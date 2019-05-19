@@ -1,7 +1,6 @@
-const NONE = Symbol("NONE");
-module.exports.NONE = NONE;
+export const NONE = Symbol("NONE");
 
-module.exports.map = (fn, struct) => {
+export const map = (fn, struct) => {
   const acc = [];
   for (let i = 0; i < struct.length; i++) {
     const result = fn(struct[i]);
@@ -12,7 +11,7 @@ module.exports.map = (fn, struct) => {
   return acc;
 };
 
-module.exports.flatMap = (fn, struct) => {
+export const flatMap = (fn, struct) => {
   const acc = [];
   for (let i = 0; i < struct.length; i++) {
     const result = fn(struct[i]);
@@ -27,9 +26,9 @@ module.exports.flatMap = (fn, struct) => {
   return acc;
 };
 
-module.exports.concat = (a, b) => a.concat(b);
+export const concat = (a, b) => a.concat(b);
 
-module.exports.reduceRight = (fn, initial, struct) => {
+export const reduceRight = (fn, initial, struct) => {
   let acc = initial;
   for (let i = struct.length - 1; i >= 0; i--) {
     acc = fn(acc, struct[i]);
@@ -37,7 +36,7 @@ module.exports.reduceRight = (fn, initial, struct) => {
   return acc;
 };
 
-module.exports.reduce = (fn, initial, struct) => {
+export const reduce = (fn, initial, struct) => {
   let acc = initial;
   for (let i = 0; i < struct.length; i++) {
     acc = fn(acc, struct[i]);
@@ -45,21 +44,21 @@ module.exports.reduce = (fn, initial, struct) => {
   return acc;
 };
 
-module.exports.cons = (a, b) => [a].concat(b);
+export const cons = (a, b) => [a].concat(b);
 
-module.exports.conj = (a, b) => {
+export const conj = (a, b) => {
   const r = a.slice();
   r.push(b);
   return r;
 };
 
-module.exports.insertArray = (idx, value, struct) => {
+export const insertArray = (idx, value, struct) => {
   const r = struct.slice(0, idx);
   r.push(value, ...struct.slice(idx));
   return r;
 };
 
-module.exports.updateArray = (idx, fn, struct) => {
+export const updateArray = (idx, fn, struct) => {
   const result = fn(struct[idx]);
   if (result === NONE) {
     const r = struct.slice(0, idx);
@@ -72,11 +71,11 @@ module.exports.updateArray = (idx, fn, struct) => {
   }
 };
 
-module.exports.isArray = Array.isArray;
+export const isArray = Array.isArray;
 
-module.exports.isEmpty = struct => !struct || struct.length === 0;
+export const isEmpty = struct => !struct || struct.length === 0;
 
-module.exports.omit = (keys, struct) => {
+export const omit = (keys, struct) => {
   const acc = {};
   const Objkeys = Object.keys(struct);
   for (let i = 0; i < Objkeys.length; i++) {
@@ -88,7 +87,7 @@ module.exports.omit = (keys, struct) => {
   return acc;
 };
 
-module.exports.pick = (keys, struct) => {
+export const pick = (keys, struct) => {
   const acc = {};
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
@@ -97,7 +96,7 @@ module.exports.pick = (keys, struct) => {
   return acc;
 };
 
-module.exports.merge = (a, b) => {
+export const merge = (a, b) => {
   const acc = {};
   const keysA = Object.keys(a);
   for (let i = 0; i < keysA.length; i++) {
@@ -114,7 +113,7 @@ module.exports.merge = (a, b) => {
   return acc;
 };
 
-module.exports.mapValues = (fn, struct) => {
+export const mapValues = (fn, struct) => {
   const acc = {};
   const keys = Object.keys(struct);
   for (let i = 0; i < keys.length; i++) {
@@ -128,7 +127,7 @@ module.exports.mapValues = (fn, struct) => {
   return acc;
 };
 
-module.exports.mapKeys = (fn, struct) => {
+export const mapKeys = (fn, struct) => {
   const acc = {};
   const keys = Object.keys(struct);
   for (let i = 0; i < keys.length; i++) {
@@ -142,7 +141,7 @@ module.exports.mapKeys = (fn, struct) => {
   return acc;
 };
 
-module.exports.mapEntries = (fn, struct) => {
+export const mapEntries = (fn, struct) => {
   const acc = {};
   const keys = Object.keys(struct);
   for (let i = 0; i < keys.length; i++) {
@@ -156,12 +155,11 @@ module.exports.mapEntries = (fn, struct) => {
   return acc;
 };
 
-module.exports.set = (key, value, struct) =>
-  module.exports.merge(struct, { [key]: value });
+export const set = (key, value, struct) => merge(struct, { [key]: value });
 
-module.exports.keys = Object.keys;
+export const keys = Object.keys;
 
-module.exports.values = obj => {
+export const values = obj => {
   const acc = [];
   const keys = Object.keys(obj);
   for (let i = 0; i < keys.length; i++) {
@@ -170,7 +168,7 @@ module.exports.values = obj => {
   return acc;
 };
 
-module.exports.entries = obj => {
+export const entries = obj => {
   const acc = [];
   const keys = Object.keys(obj);
   for (let i = 0; i < keys.length; i++) {
@@ -180,7 +178,7 @@ module.exports.entries = obj => {
   return acc;
 };
 
-module.exports.isObject = struct =>
+export const isObject = struct =>
   typeof struct === "object" &&
   struct !== null &&
   struct.constructor === Object;

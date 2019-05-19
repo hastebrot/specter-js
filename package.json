@@ -1,25 +1,26 @@
 {
   "name": "specter-js",
   "version": "0.0.1",
-  "main": "dist/specter-js.cjs.js",
-  "module": "dist/specter-js.esm.js",
-  "browser": "dist/specter-js.umd.js",
   "license": "MIT",
-  "jest": {
-    "collectCoverage": true
-  },
+  "source": "src/core.js",
   "scripts": {
-    "test": "yarn jest",
-    "start": "rollup -c -w",
-    "build": "rollup -c",
-    "bench": "node ./benchmark/transform.js"
+    "build": "microbundle build --format=iife --sourcemap=false --output=./dist/"
   },
   "dependencies": {},
   "devDependencies": {
-    "benchmark": "^2.1.4",
-    "jest": "^23.6.0",
-    "rollup": "^0.66.6",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0"
+    "jest": "^24.8.0",
+    "prettier": "^1.17.1",
+    "microbundle": "^0.11.0"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": false,
+    "arrowParens": "avoid",
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false
   }
 }
